@@ -7,7 +7,7 @@ Validate, normalize, and format Bangladesh mobile phone numbers for Node.js proj
 [![CI](https://github.com/Rajin-257/lib-bdphone/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/Rajin-257/lib-bdphone/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Why this package
+## Why this package is useful
 
 - Handles Bangladesh mobile numbers in real-world input formats (`01`, `880`, `+880`, mixed characters)
 - Returns structured validation with operator info for easier backend and UI handling
