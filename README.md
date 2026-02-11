@@ -234,6 +234,15 @@ Accepted names/aliases include:
 - `expectedOperator` (optional)
   - Example: `validateBdPhoneNumber('01812345678', { expectedOperator: 'Robi' })`
 
+## Author
+
+- Rajin
+
+## GitHub
+
+- Repository: https://github.com/Rajin-257/bd-phone-number-format.git
+- Issues: https://github.com/Rajin-257/bd-phone-number-format/issues
+
 ## License
 
 MIT

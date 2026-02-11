@@ -19,9 +19,27 @@
     "phone",
     "mobile",
     "validation",
-    "format"
+    "format",
+    "normalize",
+    "formatting",
+    "Bangladeshi phone number formatting",
+    "phone number validation",
+    "phone number normalization",
+    "phone number formatting",
+    "bd phone number format",
+    "bd phone number validation",
+    "bd phone number normalization",
+    "bd phone number formatting"
   ],
-  "author": "",
+  "author": "Rajin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rajin-257/bd-phone-number-format.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Rajin-257/bd-phone-number-format/issues"
+  },
+  "homepage": "https://github.com/Rajin-257/bd-phone-number-format#readme",
   "license": "MIT",
   "type": "commonjs",
   "files": [
