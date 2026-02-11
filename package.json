@@ -11,6 +11,12 @@
       "import": "./index.mjs",
       "require": "./index.js",
       "default": "./index.js"
+    },
+    "./react": {
+      "types": "./react/index.d.ts",
+      "import": "./react/index.mjs",
+      "require": "./react/index.js",
+      "default": "./react/index.js"
     }
   },
   "scripts": {
@@ -43,12 +49,16 @@
     "url": "https://github.com/Rajin-257/lib-bdphone/issues"
   },
   "homepage": "https://github.com/Rajin-257/lib-bdphone#readme",
+  "peerDependencies": {
+    "react": ">=17"
+  },
   "license": "MIT",
   "type": "commonjs",
   "files": [
     "index.js",
     "index.mjs",
     "index.d.ts",
+    "react",
     "README.md"
   ]
 }

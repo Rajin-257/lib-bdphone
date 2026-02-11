@@ -53,6 +53,12 @@ console.log(parseBdPhoneNumber("+8801615928286"));
 npm install lib-bdphone
 ```
 
+For React hook/component support:
+
+```bash
+npm install react
+```
+
 ## Usage
 
 ```js
@@ -192,6 +198,56 @@ console.log(customizeBdPhoneNumber("01615928286", {
 }));
 // +880 1615928286 #BD
 ```
+
+## React Usage (`lib-bdphone/react`)
+
+Hook example:
+
+```jsx
+import { useBdPhone } from "lib-bdphone/react";
+
+export function ExampleHookForm() {
+  const phone = useBdPhone({
+    initialValue: "+8801615928286",
+    normalizeOnBlur: true,
+    normalizeFormat: "e164"
+  });
+
+  return (
+    <div>
+      <input value={phone.value} onChange={phone.onChange} onBlur={phone.onBlur} />
+      <p>Valid: {String(phone.isValid)}</p>
+      <p>Carrier: {phone.carrierGuess || "N/A"}</p>
+      <p>E.164: {phone.e164 || "N/A"}</p>
+    </div>
+  );
+}
+```
+
+Component example:
+
+```jsx
+import { BdPhoneInput } from "lib-bdphone/react";
+
+export function ExampleComponent() {
+  return (
+    <BdPhoneInput
+      placeholder="Enter BD phone"
+      normalizeOnBlur
+      normalizeFormat="e164"
+      onValueChange={(value, parsed) => {
+        console.log(value);
+        console.log(parsed);
+      }}
+    />
+  );
+}
+```
+
+React exports:
+
+- `useBdPhone(config?)`
+- `BdPhoneInput`
 
 ## API
 
