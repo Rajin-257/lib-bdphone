@@ -2,8 +2,8 @@
 
 Validate, normalize, and format Bangladesh mobile phone numbers for Node.js projects.
 
-[![npm version](https://img.shields.io/npm/v/lib-bdphone.svg)](https://www.npmjs.com/package/lib-bdphone)
-[![npm downloads](https://img.shields.io/npm/dm/lib-bdphone.svg)](https://www.npmjs.com/package/lib-bdphone)
+<!-- [![npm version](https://img.shields.io/npm/v/lib-bdphone.svg)](https://www.npmjs.com/package/lib-bdphone)
+[![npm downloads](https://img.shields.io/npm/dm/lib-bdphone.svg)](https://www.npmjs.com/package/lib-bdphone) -->
 [![CI](https://github.com/Rajin-257/lib-bdphone/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/Rajin-257/lib-bdphone/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
