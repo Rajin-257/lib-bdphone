@@ -8,6 +8,8 @@ const {
   isValidBdPhoneNumber,
   formatBdPhoneNumber,
   normalizeBdPhoneNumber,
+  customizeBdPhoneNumber,
+  refactorBdPhoneNumber,
   getBdPhoneOperator,
   isBdPhoneOperator
 } = require("../index");
@@ -89,4 +91,68 @@ test("throws for unsupported operator in helper", () => {
   assert.throws(() => isBdPhoneOperator("01712345678", "unknown-operator"), {
     message: /Unsupported operator/
   });
+});
+
+test("customize function supports all input variants for prefix conversion", () => {
+  const options = {
+    removeFromStart: 1,
+    prefix: "+880"
+  };
+
+  assert.equal(customizeBdPhoneNumber("01615928286", options), "+8801615928286");
+  assert.equal(customizeBdPhoneNumber("1615928286", options), "+8801615928286");
+  assert.equal(customizeBdPhoneNumber("8801615928286", options), "+8801615928286");
+  assert.equal(customizeBdPhoneNumber("+8801615928286", options), "+8801615928286");
+});
+
+test("customize function can remove from start and end", () => {
+  assert.equal(
+    customizeBdPhoneNumber("01615928286", {
+      removeFromStart: 1,
+      removeFromEnd: 2,
+      prefix: "X"
+    }),
+    "X16159282"
+  );
+
+  assert.equal(
+    customizeBdPhoneNumber("01615928286", {
+      base: "international",
+      removeFromStart: 3,
+      prefix: "+",
+      separator: "-"
+    }),
+    "+-1615928286"
+  );
+});
+
+test("refactor alias works same as customize", () => {
+  assert.equal(
+    refactorBdPhoneNumber("01615928286", { removeFromStart: 1, prefix: "880" }),
+    "8801615928286"
+  );
+});
+
+test("customize returns null for invalid phone input", () => {
+  assert.equal(customizeBdPhoneNumber("abc123", { prefix: "880" }), null);
+});
+
+test("customize throws for invalid transform options", () => {
+  assert.throws(() =>
+    customizeBdPhoneNumber("01615928286", {
+      removeFromStart: -1
+    })
+  );
+
+  assert.throws(() =>
+    customizeBdPhoneNumber("01615928286", {
+      base: "e164"
+    })
+  );
+
+  assert.throws(() =>
+    customizeBdPhoneNumber("01615928286", {
+      removeFromStart: 11
+    })
+  );
 });

@@ -1,10 +1,19 @@
 export type BdPhoneFormat = "local" | "international" | "e164" | "pretty" | "masked";
 export type BdOperator = "Grameenphone" | "Robi" | "Banglalink" | "Teletalk";
+export type BdPhoneTransformBase = "local" | "core" | "international";
 
 export interface BdPhoneOptions {
   allowMissingLeadingZero?: boolean;
   format?: BdPhoneFormat;
   expectedOperator?: BdOperator | string;
+}
+
+export interface BdPhoneTransformOptions extends BdPhoneOptions {
+  base?: BdPhoneTransformBase;
+  removeFromStart?: number;
+  removeFromEnd?: number;
+  prefix?: string;
+  separator?: string;
 }
 
 export interface BdPhoneValidationFailure {
@@ -58,3 +67,13 @@ export function isBdPhoneOperator(
   operatorName: string,
   options?: BdPhoneOptions
 ): boolean;
+
+export function customizeBdPhoneNumber(
+  input: string | number | null | undefined,
+  options?: BdPhoneTransformOptions
+): string | null;
+
+export function refactorBdPhoneNumber(
+  input: string | number | null | undefined,
+  options?: BdPhoneTransformOptions
+): string | null;

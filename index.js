@@ -62,6 +62,33 @@ function resolveOperator(operatorCode) {
   return OPERATOR_DISPLAY_BY_KEY[key] || null;
 }
 
+function parseNonNegativeInteger(value, fieldName) {
+  if (value == null) {
+    return 0;
+  }
+
+  if (!Number.isInteger(value) || value < 0) {
+    throw new Error(`${fieldName} must be a non-negative integer.`);
+  }
+
+  return value;
+}
+
+function getTransformBase(result, base) {
+  const selectedBase = base || "local";
+
+  switch (selectedBase) {
+    case "local":
+      return result.local;
+    case "core":
+      return result.local.slice(1);
+    case "international":
+      return result.international;
+    default:
+      throw new Error("Unsupported base. Use one of: local, core, international.");
+  }
+}
+
 function toLocalCandidate(input, options) {
   if (input == null) {
     return invalid(input, "Phone number is required.");
@@ -211,6 +238,35 @@ function normalizeBdPhoneNumber(input, options = {}) {
   return formatBdPhoneNumber(input, format, options);
 }
 
+function customizeBdPhoneNumber(input, options = {}) {
+  const result = validateBdPhoneNumber(input, options);
+  if (!result.isValid) {
+    return null;
+  }
+
+  const removeFromStart = parseNonNegativeInteger(options.removeFromStart, "removeFromStart");
+  const removeFromEnd = parseNonNegativeInteger(options.removeFromEnd, "removeFromEnd");
+
+  const baseValue = getTransformBase(result, options.base);
+  if (removeFromStart + removeFromEnd >= baseValue.length) {
+    throw new Error("Cannot remove all digits. Decrease removeFromStart/removeFromEnd.");
+  }
+
+  const trimmed = baseValue.slice(removeFromStart, baseValue.length - removeFromEnd);
+  const prefix = options.prefix == null ? "" : String(options.prefix);
+  const separator = options.separator == null ? "" : String(options.separator);
+
+  if (prefix && separator) {
+    return `${prefix}${separator}${trimmed}`;
+  }
+
+  return `${prefix}${trimmed}`;
+}
+
+function refactorBdPhoneNumber(input, options = {}) {
+  return customizeBdPhoneNumber(input, options);
+}
+
 function getBdPhoneOperator(input, options = {}) {
   const result = validateBdPhoneNumber(input, options);
   if (!result.isValid) {
@@ -241,6 +297,8 @@ module.exports = {
   isValidBdPhoneNumber,
   formatBdPhoneNumber,
   normalizeBdPhoneNumber,
+  customizeBdPhoneNumber,
+  refactorBdPhoneNumber,
   getBdPhoneOperator,
   isBdPhoneOperator
 };
