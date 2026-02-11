@@ -2,6 +2,32 @@
 
 Validate, normalize, and format Bangladesh mobile phone numbers for Node.js projects.
 
+[![npm version](https://img.shields.io/npm/v/bd-phone-number-format.svg)](https://www.npmjs.com/package/bd-phone-number-format)
+[![npm downloads](https://img.shields.io/npm/dm/bd-phone-number-format.svg)](https://www.npmjs.com/package/bd-phone-number-format)
+[![CI](https://github.com/Rajin-257/bd-phone-number-format/actions/workflows/ci.yml/badge.svg)](https://github.com/Rajin-257/bd-phone-number-format/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Why this package
+
+- Handles Bangladesh mobile numbers in real-world input formats (`01`, `880`, `+880`, mixed characters)
+- Returns structured validation with operator info for easier backend and UI handling
+- Includes advanced refactor tools (trim start/end digits, add prefix/suffix, custom separators)
+- Lightweight utility with built-in TypeScript definitions and automated tests
+
+## Quick Start (30 seconds)
+
+```js
+const {
+  validateBdPhoneNumber,
+  formatBdPhoneNumber,
+  getBdPhoneOperator
+} = require("bd-phone-number-format");
+
+console.log(validateBdPhoneNumber("+880 1615-928286"));
+console.log(formatBdPhoneNumber("01615928286", "e164"));
+console.log(getBdPhoneOperator("01615928286"));
+```
+
 ## Features
 
 - Validates Bangladesh mobile numbers (local and international forms)
@@ -233,6 +259,20 @@ Accepted names/aliases include:
   - Allows input like `1712345678` and converts it to local form `01712345678`
 - `expectedOperator` (optional)
   - Example: `validateBdPhoneNumber('01812345678', { expectedOperator: 'Robi' })`
+
+## Use Cases
+
+- Form validation in Node.js, Express, and Next.js APIs
+- CRM/contact imports that need normalization to a single format
+- Telecom/operator-aware business rules (routing, segmentation, analytics)
+- Data export pipelines that require custom prefix/suffix output
+
+## Support This Project
+
+- Star the repository to help more developers discover it
+- Share your use case and code snippets in issues/discussions
+- Open a feature request if you need additional Bangladesh number rules
+- Use the launch content kit at `docs/launch-post-templates.md` to promote updates
 
 ## Author
 
